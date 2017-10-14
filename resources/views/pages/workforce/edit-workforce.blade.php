@@ -70,7 +70,7 @@
             <label class="col-md-2 control-label" for="submit"></label>
             <div class="col-md-5">
               <button id="submit" name="submit" class="btn btn-primary" type="submit">Salvar</button>
-              <button id="cancel" name="cancel" class="btn btn-danger">Cancelar</button>
+              <button id="cancel" name="cancel" class="btn btn-danger" type="button" onclick="window.location='{{ URL::previous() }}'">Cancelar</button>
             </div>
           </div>
 

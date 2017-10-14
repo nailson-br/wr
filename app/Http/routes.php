@@ -27,6 +27,17 @@ Route::get('edit-workforce/{id}', 'WorkforceController@edit');
 Route::post('edit-workforce/{id}', 'WorkforceController@update');
 Route::get('delete-workforce/{id}', 'WorkforceController@destroy');
 
+Route::get('create-service', function() {
+	return view('pages.services.service');
+});
+
+Route::get('list-services', 'ServiceController@index');
+Route::post('create-service', 'ServiceController@create');
+Route::get('edit-service/{id}', 'ServiceController@edit');
+Route::post('edit-service/{id}', 'ServiceController@update');
+Route::get('delete-service/{id}', 'ServiceController@destroy');
+
+
 // Route::get('/create-workforce', function () {
 
 //     $workforce                   = new Workforce;
