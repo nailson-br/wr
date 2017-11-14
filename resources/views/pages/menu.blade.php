@@ -36,7 +36,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Cadastro de usuários</a></li>
+            <li><a href="{{ url('create-wr_user')}}">Cadastro de usuários</a></li>
             <li><a href="{{ url('create-workforce')}}">Cadastro de Mão de Obra</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{{ url('list-workforce') }}">Listar Mão de Obra</a></li>
