@@ -276,8 +276,9 @@ class ComposerStaticInit6c62de16dfe0885a08e2f00561395a09
     );
 
     public static $classMap = array (
+        'CrateWrUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_20_152042_crate_wr_users_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateServicesTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_10_013836_create_services_table.php',
+        'CreateServicesTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_14_143712_create_services_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateWorkforceTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_16_230108_create_workforce_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

@@ -40,7 +40,7 @@ Route::get('delete-service/{id}', 'ServiceController@destroy');
 
 // Rotas para Usuários WR (diferenciando do user criado pelo Laravel)
 Route::get('create-wr_user', function() {
-	return view('pages.users.wr_user');
+	return view('pages.wr_users.wr_user');
 });
 Route::get('list-wr_users', 'WR_UserController@index');
 Route::post('create-wr_user', 'WR_UserController@create');
