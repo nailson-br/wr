@@ -22,6 +22,8 @@
             <li><a href="{{ url('create-service')}}">Cadastro de Serviço</a></li>
             <li><a href="{{ url('list-services')}}">Listagem de Serviço</a></li>
             <li role="separator" class="divider"></li>
+            <li><a href="{{ url('create-holiday')}}">Cadstro de Feriados</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Input;
+use DateTime;
+use Carbon\Carbon;
 
-use App\WR_User;
+use App\Holiday;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class WR_UserController extends Controller
+class HolidayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +22,8 @@ class WR_UserController extends Controller
     public function index()
     {
         //
-        $wr_users = WR_User::all();
-        // dd($workforce);
-        return view('pages.wr_users.list-wr_users')->with('wr_users', $wr_users);
+        $holidays = Holiday::all();
+        return view('pages.holidays.list-holidays')->with('holidays', $holidays);
     }
 
     /**
@@ -33,15 +34,18 @@ class WR_UserController extends Controller
     public function create()
     {
         //
+        $holiday = new Holiday();
+        // $holiday->holiday = DateTime::createFromFormat('d-m-Y', Input::get('holiday'));
+        // echo Input::get('holiday');
+        $holiday->holiday = Carbon::createFromFormat('d/m/Y', Input::get('holiday'));
+        $holiday->description = Input::get('description');
+        $holiday->holiday_type = Input::get('holiday_type');
 
-        $wr_user = new WR_User();
-        $wr_user->fullName = Input::get('fullName');
-        $wr_user->name = Input::get('name');
-        $wr_user->wr_user_type = Input::get('wr_user_type');
-
-        $wr_user->save();
-
-        return redirect('list-wr_users');
+        $holiday->save();
+//         echo Input::get('holiday');
+//         dd(Carbon::createFromFormat('d-m-y', Input::get('holiday')));
+// dd($holiday->holiday);
+        return redirect('list-holidays');
     }
 
     /**
@@ -75,8 +79,8 @@ class WR_UserController extends Controller
     public function edit($id)
     {
         //
-        $wr_user = WR_User::find($id);
-        return view('pages.wr_users.edit-wr_user')->with('wr_user', $wr_user);
+        $holiday = Holiday::find($id);
+        return view('pages.holidays.edit-holiday')->with('holiday', $holiday);
     }
 
     /**
@@ -89,24 +93,24 @@ class WR_UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $wr_user = WR_User::find($id);
+        $holiday = Holiday::find($id);
 
-        if ($wr_user->fullName != Input::get('fullName')) {
-            $wr_user->fullName = Input::get('fullName');
+        if ($holiday->holiday != Input::get('holiday')) {
+            $holiday->holiday = Input::get('holiday');
         }
 
-        if ($wr_user->name != Input::get('name')) {
-            $wr_user->name = Input::get('name');
+        if ($holiday->description != Input::get('description')) {
+            $holiday->description = Input::get('description');
         }
 
-        if ($wr_user->wr_user_type != Input::get('wr_user_type')) {
-            $wr_user->wr_user_type = Input::get('wr_user_type');
+        if ($holiday->holiday_type != Input::get('holiday_type')) {
+            $holiday->holiday_type = Input::get('holiday_type');
         }
 
-        $wr_user->save();
+        $holiday->save();
 
         // return redirect('visualizar-post/' . $post->id);
-        return redirect('list-wr_users');
+        return redirect('list-holidays');
     }
 
     /**
@@ -118,9 +122,9 @@ class WR_UserController extends Controller
     public function destroy($id)
     {
         //
-        $wr_user = WR_User::find($id);
-        $wr_user->delete();
+        $holiday = Holiday::find($id);
+        $holiday->delete();
 
-        return redirect('list-wr_users');
+        return redirect('list-holidays');
     }
 }

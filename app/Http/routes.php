@@ -37,7 +37,6 @@ Route::get('edit-service/{id}', 'ServiceController@edit');
 Route::post('edit-service/{id}', 'ServiceController@update');
 Route::get('delete-service/{id}', 'ServiceController@destroy');
 
-
 // Rotas para Usuários WR (diferenciando do user criado pelo Laravel)
 Route::get('create-wr_user', function() {
 	return view('pages.wr_users.wr_user');
@@ -47,6 +46,16 @@ Route::post('create-wr_user', 'WR_UserController@create');
 Route::get('edit-wr_user/{id}', 'WR_UserController@edit');
 Route::post('edit-wr_user/{id}', 'WR_UserController@update');
 Route::get('delete-wr_user/{id}', 'WR_UserController@destroy');
+
+// Rotas para Feriados e Dias-Ponte
+Route::get('create-holiday', function() {
+	return view('pages.holidays.holiday');
+});
+Route::get('list-holidays', 'HolidayController@index');
+Route::post('create-holiday', 'HolidayController@create');
+Route::get('edit-holiday/{id}', 'HolidayController@edit');
+Route::post('edit-holiday/{id}', 'HolidayController@update');
+Route::get('delete-holiday/{id}', 'HolidayController@destroy');
 
 // Route::get('/create-workforce', function () {
 

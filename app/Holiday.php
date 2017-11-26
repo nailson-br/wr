@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Workforce extends Model
+class Holiday extends Model
 {
     // Referência para a tabela
-    protected $table = 'workforce';
+    protected $table = 'holidays';
 }

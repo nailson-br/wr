@@ -9,26 +9,37 @@
   		</div>
   		<div class="col-md-10">
 
-        <form class="form-horizontal" action="{{ url('edit-service/' . $service->id)}}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="{{ url('edit-wr_user/' . $wr_user->id)}}" method="post" enctype="multipart/form-data">
           {!! csrf_field() !!}
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Editar Serviço</legend>
+          <legend>Editar Usuário WR</legend>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="cod">Código</label>
+            <label class="col-md-2 control-label" for="name">Nome</label>
             <div class="col-md-10">
-            <input id="cod" name="cod" type="text" placeholder="cod" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')" value="{!! $service->cod !!}">
+            <input id="name" name="name" type="text" placeholder="name" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o nome ou apelido.')" oninput="setCustomValidity('')" value="{!! $wr_user->name !!}">
             </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="description">Identificação</label>
+            <label class="col-md-2 control-label" for="fullName">Nome completo</label>
             <div class="col-md-5">
-            <input id="description" name="description" type="text" placeholder="Descrição do serviço" class="form-control input-md" required="" data-error="deu merda" value="{!! $service->description !!}">
+            <input id="fullName" name="fullName" type="text" placeholder="Nome completo" class="form-control input-md" required="" data-error="deu merda" value="{!! $wr_user->fullName !!}">
+            </div>
+          </div>
+
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="wr_user_type">Tipo</label>
+            <div class="col-md-5">
+              <select id="wr_user_type" name="wr_user_type" class="form-control">
+                <option value="admin" {{ $wr_user->wr_user_type === "admin" ? "selected" : "" }}>administrador</option>
+                <option value="wr_user" {{ $wr_user->wr_user_type === "wr_user" ? "selected" : "" }}>usuário</option>
+              </select>
             </div>
           </div>
 

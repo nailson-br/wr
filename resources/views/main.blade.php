@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 @include("pages.head")
 <body>
     @include("pages.menu")
