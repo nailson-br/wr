@@ -57,6 +57,12 @@ Route::get('edit-holiday/{id}', 'HolidayController@edit');
 Route::post('edit-holiday/{id}', 'HolidayController@update');
 Route::get('delete-holiday/{id}', 'HolidayController@destroy');
 
+// Rotas para Cadastro e edição de Ordens de Serviço
+// Route::get('create-service_order', function() {
+// 	return view('pages.service_orders.service_order');
+// });
+Route::get('create-service_order', 'ServiceOrderController@index');
+
 // Route::get('/create-workforce', function () {
 
 //     $workforce                   = new Workforce;
