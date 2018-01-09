@@ -66,11 +66,11 @@
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-2 control-label" for="mo">MO</label>
-            <div class="col-md-4">
+            <div class="col-md-5">
             <input id="mo" name="mo" type="text" placeholder="Planilha para início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
             </div>
 
-            <label class="col-md-2 control-label" for="end">Fim</label>
+            <label class="col-md-1 control-label" for="end">Fim</label>
             <div class="col-md-4">
             <input id="end" name="end" type="text" placeholder="Planilha para início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
             </div>
@@ -92,12 +92,62 @@
         <hr>
         
         <!-- Tabela com as OSs abertas -->
-        <table>
-          <th>
-            
+        <table width="100%" border="1px">
+          <tr>
+            <th style="text-align: center;">COD</th>
+            <th style="text-align: center;">SERVIÇO</th>
+            <th style="text-align: center;">STATUS</th>
+            <th colspan="6" style="text-align: center;">Detalhes</th>
+            <th colspan="2" style="text-align: center;">Planilha</th>
+          </tr>
+          <!-- <tbody style="border-radius: 10px; display: inline-flex; background-color: #c0c0c0"> -->
+            <tr style="background-color: #FFFFFF">
+              <td rowspan="2" style="text-align: center;">150601</td>
+              <td rowspan="2">ADMINISTRAÇÃO</td>
+              <td rowspan="2" style="text-align: center;">ATIVO</td>
+              <td>Solicitante</td>
+              <td> </td>
+              <td>Planilha para</td>
+              <td> </td>
+              <td>MO</td>
+              <td> </td>
+              <td rowspan="2" style="text-align: center;">x</td>
+              <td rowspan="2" style="text-align: center;">x</td>
+            </tr>
+            <tr style="background-color: #FFFFFF">
+              <td>E-mail</td>
+              <td> </td>
+              <td>Início</td>
+              <td> </td>
+              <td>Fim</td>
+              <td> </td>
+            </tr>
+          <!-- </tbody> -->
+
+          <!-- <tbody style="border-radius: 10px; display: block; background-color: #c0c0c0"> -->
+            <tr style="background-color: #CBCEFB">
+              <td rowspan="2" >150601</td>
+              <td rowspan="2">ADMINISTRAÇÃO</td>
+              <td rowspan="2">ATIVO</td>
+              <td>Solicitante</td>
+              <td></td>
+              <td>Planilha para</td>
+              <td></td>
+              <td>MO</td>
+              <td></td>
+              <td rowspan="2">x</td>
+              <td rowspan="2">x</td>
+            </tr>
+            <tr style="background-color: #CBCEFB">
+              <td>E-mail</td>
+              <td></td>
+              <td>Início</td>
+              <td></td>
+              <td>Fim</td>
+              <td></td>
+            </tr>
+          <!-- </tbody> -->
         </table>
-
-
       </div>
     </div>
   </div>
