@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'CreateHolidaysTable' => $baseDir . '/database/migrations/2017_11_20_195847_create_holidays_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateServiceOrdersTable' => $baseDir . '/database/migrations/2018_01_18_002711_create_service_orders_table.php',
     'CreateServicesTable' => $baseDir . '/database/migrations/2017_10_14_143712_create_services_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWorkforceTable' => $baseDir . '/database/migrations/2017_09_16_230108_create_workforce_table.php',
@@ -526,6 +527,7 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'ServicesAddColumn' => $baseDir . '/database/migrations/2018_01_18_004045_services_add_column.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',

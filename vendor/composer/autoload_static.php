@@ -278,6 +278,7 @@ class ComposerStaticInit6c62de16dfe0885a08e2f00561395a09
     public static $classMap = array (
         'CreateHolidaysTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_20_195847_create_holidays_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateServiceOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_18_002711_create_service_orders_table.php',
         'CreateServicesTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_14_143712_create_services_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateWorkforceTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_16_230108_create_workforce_table.php',
@@ -796,6 +797,7 @@ class ComposerStaticInit6c62de16dfe0885a08e2f00561395a09
         'SebastianBergmann\\RecursionContext\\Exception' => __DIR__ . '/..' . '/sebastian/recursion-context/src/Exception.php',
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'ServicesAddColumn' => __DIR__ . '/../..' . '/database/migrations/2018_01_18_004045_services_add_column.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',

@@ -31,7 +31,7 @@
             <div class="col-md-10">
               <select id="description" name="description" class="form-control">
                 <?php foreach ($services as $key => $value): ?>
-                  <option value="{!! $value->id !!}">{!! $value->description !!}</option>
+                  <option value="{!! $value->id !!}">{!! $value->cod . " - " . $value->description !!}</option>
                 <?php endforeach; ?>
               </select>
             </div>
@@ -55,11 +55,15 @@
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="spreadsheet">Planilha para início</label>
+            <label class="col-md-2 control-label" for="spreadsheet_to">Planilha para</label>
             <div class="col-md-5">
-            <input id="spreadsheet" name="spreadsheet" type="text" placeholder="Planilha para início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+            <input id="spreadsheet_to" name="spreadsheet_to" type="text" placeholder="destinatário da planilha" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
             </div>
 
+            <label class="col-md-1 control-label" for="start">início</label>
+            <div class="col-md-4">
+            <input id="start" name="start" type="text" placeholder="início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+            </div>
 
           </div>
 
@@ -67,12 +71,12 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="mo">MO</label>
             <div class="col-md-5">
-            <input id="mo" name="mo" type="text" placeholder="Planilha para início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+            <input id="mo" name="mo" type="text" placeholder="MO" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
             </div>
 
             <label class="col-md-1 control-label" for="end">Fim</label>
             <div class="col-md-4">
-            <input id="end" name="end" type="text" placeholder="Planilha para início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+            <input id="end" name="end" type="text" placeholder="fim" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
             </div>
 
           </div>
