@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Input;
+
 use Illuminate\Http\Request;
 
-use App\ServiceOrder;
+use App\CodService;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ServiceOrderController extends Controller
+class CodServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +19,8 @@ class ServiceOrderController extends Controller
      */
     public function index()
     {
-        //
-        $serviceOrders = ServiceOrder::All();
-        return view('pages.service_orders.service_order')->with('serviceOrders', $serviceOrders);
+        $codServices = CodService::All();
+        return view('pages.cod_services.list-cod_services')->with('codServices', $codServices);
     }
 
     /**
@@ -29,15 +30,13 @@ class ServiceOrderController extends Controller
      */
     public function create()
     {
-        //
-        $serviceOrder = new ServiceOrder();
-        $serviceOrder->so = Input::get('so');
-        $serviceOrder->month = Input::get('month');
-        $serviceOrder->year = Input::get('year');
+        $codService = new CodService();
+        $codService->cod = Input::get('cod');
+        $codService->description = Input::get('description');
 
-        $serviceOrder->save();
+        $codService->save();
 
-        return redirect('list-service_orders');
+        return redirect('list-cod_services');
     }
 
     /**
@@ -70,7 +69,8 @@ class ServiceOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $codService = CodService::find($id);
+        return view('pages.cod_services.edit-cod_service')->with('codService', $codService);
     }
 
     /**
@@ -82,24 +82,19 @@ class ServiceOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $serviceOrder = ServiceOrder::find($id);
+        $codService = CodService::find($id);
 
-        if ($serviceOrder->so != Input::get('so')) {
-            $serviceOrder->so = Input::get('so');
+        if ($codService->cod != Input::get('cod')) {
+            $codService->cod = Input::get('cod');
         }
 
-        if ($serviceOrder->year != Input::get('year')) {
-            $serviceOrder->year = Input::get('year');
+        if ($codService->description != Input::get('description')) {
+            $codService->description = Input::get('description');
         }
 
-        if ($serviceOrder->month != Input::get('month')) {
-            $serviceOrder->month = Input::get('month');
-        }
+        $codService->save();
 
-        $serviceOrder->save();
-
-        return redirect('list-service_orders');
+        return redirect('list-cod_services');
     }
 
     /**
@@ -110,6 +105,9 @@ class ServiceOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $codService = CodService::find($id);
+        $codService->delete();
+
+        return redirect('list-cod_services');
     }
 }

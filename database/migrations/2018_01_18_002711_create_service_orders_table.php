@@ -14,20 +14,16 @@ class CreateServiceOrdersTable extends Migration
     {
         Schema::create('service_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('service_id')->unsigned();
-            $table->text('requirer');
-            $table->text('e-mail');
-            $table->text('spreadsheet_to');
-            $table->date('start');
-            $table->text('mo');
-            $table->date('end');
+            $table->string('so', 9)->unique();
+            $table->text('year');
+            $table->text('month');
             $table->timestamps();
         });
 
-        Schema::table('service_orders', function($table){
-            $table->index('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
-        });
+        // Schema::table('service_orders', function($table){
+        //     $table->index('service_id');
+        //     $table->foreign('service_id')->references('id')->on('services');
+        // });
     }
 
     /**

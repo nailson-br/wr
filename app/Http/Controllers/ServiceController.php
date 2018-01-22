@@ -31,7 +31,14 @@ class ServiceController extends Controller
     public function create()
     {
         $service = new Service();
-        $service->cod = Input::get('cod');
+        $service->service_order_id = Input::get('service_order_id');
+        $service->active = Input::get('active');
+        $service->requirer = Input::get('requirer');
+        $service->email = Input::get('email');
+        $service->spreadsheet_to = Input::get('spreadsheet_to');
+        $service->start = Input::get('start');
+        $serivce->mo = Input::get('mo');
+        $service->end = Input::get('end');
         $service->description = Input::get('description');
 
         $service->save();
@@ -84,12 +91,37 @@ class ServiceController extends Controller
     {
         $service = Service::find($id);
 
-        if ($service->cod != Input::get('cod')) {
-            $service->cod = Input::get('cod');
+        if ($service->service_order_id != Input::get('service_order_id')) {
+            $service->service_order_id = Input::get('service_order_id');
         }
 
-        if ($service->description != Input::get('description')) {
-            $service->description = Input::get('description');
+        if ($service->active != Input::get('active')) {
+            $service->active = Input::get('active');
+        }
+
+        if ($service->requirer != Input::get('requirer')) {
+            $service->requirer = Input::get('requirer');
+        }
+
+
+        if ($service->email != Input::get('email')) {
+            $service->email = Input::get('email');
+        }
+
+        if ($service->spreadsheet_to != Input::get('spreadsheet_to')) {
+            $service->spreadsheet_to = Input::get('spreadsheet_to');
+        }
+
+        if ($service->start != Input::get('start')) {
+            $service->start = Input::get('start');
+        }
+
+        if ($service->mo != Input::get('mo')) {
+            $service->mo = Input::get('mo');
+        }
+
+        if ($service->end != Input::get('end')) {
+            $service->end = Input::get('end');
         }
 
         $service->save();

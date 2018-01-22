@@ -1,5 +1,18 @@
 @extends('main')
 @section('content')
+<script type="text/javascript">
+  
+  function createOSNumber() {
+    var osField = document.getElementById("service_order");
+    var yearField = document.getElementById("year");
+    var monthField = document.getElementById("month");
+
+    // alert(yearField.value + monthField.value);
+
+    osField.value = "OS " + yearField.value + monthField.value;
+  }
+
+</script>
 <body>
   <div class="container-fluid">
     <div class="row">
@@ -9,76 +22,51 @@
       </div>
       <div class="col-md-10">
 
-        <form class="form-horizontal" action="{{ url('create-service')}}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="{{ url('create-service_order')}}" method="post" enctype="multipart/form-data">
           {!! csrf_field() !!}
         <fieldset>
 
           <!-- Form Name -->
           <legend>Cadastro de Ordens de Serviços</legend>
 
-          <!-- Text input-->
-<!--           <div class="form-group">
-            <label class="col-md-2 control-label" for="cod">Código</label>
-            <div class="col-md-3">
-            <input id="cod" name="cod" type="text" placeholder="cod" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
-
-            </div>
-          </div> -->
-
           <!-- Select -->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="description">Serviço</label>
-            <div class="col-md-10">
-              <select id="description" name="description" class="form-control">
-                <?php foreach ($services as $key => $value): ?>
-                  <option value="{!! $value->id !!}">{!! $value->cod . " - " . $value->description !!}</option>
-                <?php endforeach; ?>
+            <label class="col-md-2 control-label" for="year">Ano</label>
+            <div class="col-md-4">
+              <select id="year" name="year" class="form-control" onchange="createOSNumber()">
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018" selected="true">2018</option>
+                <option value="2019">2019</option>
               </select>
             </div>
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-2 control-label" for="cod">Solicitante</label>
-            <div class="col-md-5">
-            <input id="requester" name="requester" type="text" placeholder="requisitante" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
-            </div>
-
-
-            <label class="col-md-1 control-label" for="cod">e-mail</label>
+            
+             <label class="col-md-2 control-label" for="month">Mês</label>
             <div class="col-md-4">
-            <input id="requester_email" name="requester_email" type="text" placeholder="e-mail" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
-            </div>
-
-
-          </div>
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-2 control-label" for="spreadsheet_to">Planilha para</label>
-            <div class="col-md-5">
-            <input id="spreadsheet_to" name="spreadsheet_to" type="text" placeholder="destinatário da planilha" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
-            </div>
-
-            <label class="col-md-1 control-label" for="start">início</label>
-            <div class="col-md-4">
-            <input id="start" name="start" type="text" placeholder="início" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+              <select id="month" name="month" class="form-control" onchange="createOSNumber()">
+                <option value="01">Janeiro</option>
+                <option value="02">Fevereiro</option>
+                <option value="03">Março</option>
+                <option value="04">Abril</option>
+                <option value="05">Maio</option>
+                <option value="06">Junho</option>
+                <option value="07">Julho</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+              </select>
             </div>
 
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="mo">MO</label>
-            <div class="col-md-5">
-            <input id="mo" name="mo" type="text" placeholder="MO" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
-            </div>
-
-            <label class="col-md-1 control-label" for="end">Fim</label>
+            <label class="col-md-2 control-label" for="service_order">Número da OS</label>
             <div class="col-md-4">
-            <input id="end" name="end" type="text" placeholder="fim" class="form-control input-md" required="" oninvalid="this.setCustomValidity('Insira o código do serviço.')" oninput="setCustomValidity('')">
+            <input id="service_order" name="service_order" type="text" class="form-control input-md">
             </div>
-
           </div>
 
           <!-- Button (Double) -->
@@ -94,64 +82,6 @@
         </form>
 
         <hr>
-        
-        <!-- Tabela com as OSs abertas -->
-        <table width="100%" border="1px">
-          <tr>
-            <th style="text-align: center;">COD</th>
-            <th style="text-align: center;">SERVIÇO</th>
-            <th style="text-align: center;">STATUS</th>
-            <th colspan="6" style="text-align: center;">Detalhes</th>
-            <th colspan="2" style="text-align: center;">Planilha</th>
-          </tr>
-          <!-- <tbody style="border-radius: 10px; display: inline-flex; background-color: #c0c0c0"> -->
-            <tr style="background-color: #FFFFFF">
-              <td rowspan="2" style="text-align: center;">150601</td>
-              <td rowspan="2">ADMINISTRAÇÃO</td>
-              <td rowspan="2" style="text-align: center;">ATIVO</td>
-              <td>Solicitante</td>
-              <td> </td>
-              <td>Planilha para</td>
-              <td> </td>
-              <td>MO</td>
-              <td> </td>
-              <td rowspan="2" style="text-align: center;">x</td>
-              <td rowspan="2" style="text-align: center;">x</td>
-            </tr>
-            <tr style="background-color: #FFFFFF">
-              <td>E-mail</td>
-              <td> </td>
-              <td>Início</td>
-              <td> </td>
-              <td>Fim</td>
-              <td> </td>
-            </tr>
-          <!-- </tbody> -->
-
-          <!-- <tbody style="border-radius: 10px; display: block; background-color: #c0c0c0"> -->
-            <tr style="background-color: #CBCEFB">
-              <td rowspan="2" >150601</td>
-              <td rowspan="2">ADMINISTRAÇÃO</td>
-              <td rowspan="2">ATIVO</td>
-              <td>Solicitante</td>
-              <td></td>
-              <td>Planilha para</td>
-              <td></td>
-              <td>MO</td>
-              <td></td>
-              <td rowspan="2">x</td>
-              <td rowspan="2">x</td>
-            </tr>
-            <tr style="background-color: #CBCEFB">
-              <td>E-mail</td>
-              <td></td>
-              <td>Início</td>
-              <td></td>
-              <td>Fim</td>
-              <td></td>
-            </tr>
-          <!-- </tbody> -->
-        </table>
       </div>
     </div>
   </div>

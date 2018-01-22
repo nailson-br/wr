@@ -14,9 +14,16 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cod_service_id');
+            $table->integer('service_order_id');
+            $table->text('active');
+            $table->text('requirer');
+            $table->text('email');
+            $table->text('spreadsheet_to');
+            $table->date('start');
+            $table->text('mo');
+            $table->date('end');
             $table->timestamps();
-            $table->integer('cod');
-            $table->string('description');
         });
     }
 

@@ -27,6 +27,16 @@ Route::get('edit-workforce/{id}', 'WorkforceController@edit');
 Route::post('edit-workforce/{id}', 'WorkforceController@update');
 Route::get('delete-workforce/{id}', 'WorkforceController@destroy');
 
+// Rotas para Códigos de Serviço
+Route::get('create-cod_service', function() {
+	return view('pages.cod_services.cod_service');
+});
+Route::get('list-cod_services', 'CodServiceController@index');
+Route::post('create-cod_service', 'CodServiceController@create');
+Route::get('edit-cod_service/{id}', 'CodServiceController@edit');
+Route::post('edit-cod_service/{id}', 'CodServiceController@update');
+Route::get('delete-cod_service/{id}', 'CodServiceController@destroy');
+
 // Rotas para Serviço
 Route::get('create-service', function() {
 	return view('pages.services.service');
@@ -36,6 +46,19 @@ Route::post('create-service', 'ServiceController@create');
 Route::get('edit-service/{id}', 'ServiceController@edit');
 Route::post('edit-service/{id}', 'ServiceController@update');
 Route::get('delete-service/{id}', 'ServiceController@destroy');
+Route::get('add-service-to-os', function() {
+	return view('pages.services.add-service-to-os');
+});
+
+// Rotas para Ordens de Serviço
+Route::get('create-service_order', function() {
+	return view('pages.service_orders.service_order');
+});
+Route::get('list-service_orders', 'ServiceOrderController@index');
+Route::post('create-service_order', 'ServiceOrderController@create');
+Route::get('edit-service_order/{id}', 'ServiceOrderController@edit');
+Route::post('edit-service_order/{id}', 'ServiceOrderController@update');
+Route::get('delete-service_order/{id}', 'ServiceOrderController@destroy');
 
 // Rotas para Usuários WR (diferenciando do user criado pelo Laravel)
 Route::get('create-wr_user', function() {
@@ -61,7 +84,10 @@ Route::get('delete-holiday/{id}', 'HolidayController@destroy');
 // Route::get('create-service_order', function() {
 // 	return view('pages.service_orders.service_order');
 // });
-Route::get('create-service_order', 'ServiceOrderController@index');
+// Route::get('create-service_order', 'ServiceOrderController@index');
+Route::get('create-service_order', function() {
+	return view('pages.service_orders.service_order');
+});
 
 // Route::get('/create-workforce', function () {
 

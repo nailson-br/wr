@@ -19,6 +19,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operação <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="{{ url('create-cod_service')}}">Cadastro de Código de Serviço</a></li>
+            <li><a href="{{ url('list-cod_services')}}">Listagem de Códigos de Serviço</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{{ url('create-service')}}">Cadastro de Serviço</a></li>
             <li><a href="{{ url('list-services')}}">Listagem de Serviço</a></li>
             <li role="separator" class="divider"></li>
