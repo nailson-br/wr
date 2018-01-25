@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\ServiceOrder;
+use App\Service;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -37,7 +38,10 @@ class ServiceOrderController extends Controller
 
         $serviceOrder->save();
 
-        return redirect('list-service_orders');
+        // objeto "serviço" para listar os serviços associados à OS
+        $services = $serviceOrder->services();
+
+        return redirect('list-service_orders')->with('services', $services);
     }
 
     /**
