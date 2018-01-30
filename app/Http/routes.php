@@ -41,14 +41,16 @@ Route::get('delete-cod_service/{id}', 'CodServiceController@destroy');
 Route::get('create-service', function() {
 	return view('pages.services.service');
 });
-Route::get('list-services', 'ServiceController@index');
+// Route::get('list-services', 'ServiceController@index');
+Route::get('list-services', 'ServiceController@listServices');
 Route::post('create-service', 'ServiceController@create');
 Route::get('edit-service/{id}', 'ServiceController@edit');
 Route::post('edit-service/{id}', 'ServiceController@update');
 Route::get('delete-service/{id}', 'ServiceController@destroy');
-Route::get('add-service-to-os', function() {
-	return view('pages.services.add-service-to-os');
-});
+// Route::get('add-service', function() {
+// 	return view('pages.services.add-service');
+// });
+Route::get('add-service/{id}', 'ServiceController@addService');
 
 // Rotas para Ordens de Serviço
 Route::get('create-service_order', function() {

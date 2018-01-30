@@ -14,7 +14,7 @@
         <fieldset>
 
           <!-- Form Name -->
-          <legend>Cadastro de Serviços</legend>
+          <legend>Adicionar Serviços à Ordem de Serviço</legend>
 
           <!-- Text input-->
           <div class="form-group">

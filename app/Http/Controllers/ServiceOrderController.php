@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Input;
+
 use Illuminate\Http\Request;
 
 use App\ServiceOrder;
-use App\Service;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 
 class ServiceOrderController extends Controller
@@ -20,7 +22,7 @@ class ServiceOrderController extends Controller
     {
         //
         $serviceOrders = ServiceOrder::All();
-        return view('pages.service_orders.service_order')->with('serviceOrders', $serviceOrders);
+        return view('pages.service_orders.list-service_orders')->with('serviceOrders', $serviceOrders);
     }
 
     /**
@@ -32,16 +34,23 @@ class ServiceOrderController extends Controller
     {
         //
         $serviceOrder = new ServiceOrder();
-        $serviceOrder->so = Input::get('so');
+        $serviceOrder->so = Input::get('service_order');
         $serviceOrder->month = Input::get('month');
         $serviceOrder->year = Input::get('year');
 
         $serviceOrder->save();
+        $services = $serviceOrder->services;
+        // $services = $serviceOrder->services;
+        // dd($services);
 
-        // objeto "serviço" para listar os serviços associados à OS
-        $services = $serviceOrder->services();
-
-        return redirect('list-service_orders')->with('services', $services);
+        // return redirect('list-service_orders')->with('services', $services);
+        // return redirect('add-service')->with('services', $services);
+        // return Redirect::action('App\Http\Controllers\ServiceController@listServices', [$serviceOrder]);
+        // return response()->redirectToAction('ServiceController@listServices', [$serviceOrder]);
+        // return Redirect::route('list-services')->with('serviceOrder', $serviceOrder);
+        // return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services',$services);
+        return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services', $services);
+        // return view('pages.testes.testes')->with('serviceOrder', $serviceOrder)->with('services', $services);
     }
 
     /**
@@ -114,6 +123,17 @@ class ServiceOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $serviceOrder = ServiceOrder::find($id);
+        $serviceOrder->delete();
+
+        return redirect('list-service_orders');
+    }
+
+    /**
+     * Adiciona serviços para a SO indicada passada em $order
+     * Retorn
+     */
+    public function addService($order) {
+
     }
 }

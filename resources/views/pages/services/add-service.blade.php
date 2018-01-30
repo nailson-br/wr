@@ -17,19 +17,20 @@
           <legend>Inclusão de Serviços</legend>
 
           <div class="form-group">
-            <label class="col-md-2 control-label" for="os">OS</label>
+            <label class="col-md-2 control-label" for="service_order">OS</label>
             <div class="col-md-2">
-            <input id="os" name="os" type="text" placeholder="os" class="form-control input-md" readonly="true" value="201801">
+            <input id="service_order" name="service_order" type="text" placeholder="service_order" class="form-control input-md" readonly="true" value="{{ $serviceOrder->so }}">
             </div>
+            <input id="serviceOrderId" name="serviceOrderId" type="hidden" class="form-control input-md" value="{{ $serviceOrder->id }}">
 
             <label class="col-md-2 control-label" for="year">Ano</label>
             <div class="col-md-2">
-            <input id="year" name="year" type="text" placeholder="year" class="form-control input-md" readonly="true" value="2018">
+            <input id="year" name="year" type="text" placeholder="year" class="form-control input-md" readonly="true" value="{{ $serviceOrder->year }}">
             </div>
 
             <label class="col-md-2 control-label" for="month">Mês</label>
             <div class="col-md-2">
-            <input id="month" name="month" type="text" placeholder="month" class="form-control input-md" readonly="true" value="Janeiro">
+            <input id="month" name="month" type="text" placeholder="month" class="form-control input-md" readonly="true" value="{{ $serviceOrder->month }}">
             </div>
           </div>
 
@@ -113,50 +114,32 @@
             <th colspan="6" style="text-align: center;">Detalhes</th>
             <th colspan="2" style="text-align: center;">Planilha</th>
           </tr>
+
+          <?php foreach ($services as $key => $value): ?>
+
           <tr style="background-color: #FFFFFF">
-            <td rowspan="2" style="text-align: center;">150601</td>
-            <td rowspan="2">ADMINISTRAÇÃO</td>
-            <td rowspan="2" style="text-align: center;">ATIVO</td>
+            <td rowspan="2" style="text-align: center;">{{!! $value->cod_service_id !!}}</td>
+            <td rowspan="2">{{!! $value->cod_service_id !!}}</td>
+            <td rowspan="2" style="text-align: center;">{{!! $value->active !!}}</td>
             <td>Solicitante</td>
-            <td> </td>
+            <td>{{!! $value->requirer !!}}</td>
             <td>Planilha para</td>
-            <td> </td>
+            <td>{{!! $value->spreadsheet_to !!}}</td>
             <td>MO</td>
-            <td> </td>
+            <td>{{!! $value->mo !!}}</td>
             <td rowspan="2" style="text-align: center;">x</td>
             <td rowspan="2" style="text-align: center;">x</td>
           </tr>
           <tr style="background-color: #FFFFFF">
             <td>E-mail</td>
-            <td> </td>
+            <td>{{!! $value->email !!}}</td>
             <td>Início</td>
-            <td> </td>
+            <td>{{!! $value->start !!}}</td>
             <td>Fim</td>
-            <td> </td>
+            <td>{{!! $value->end !!}}</td>
           </tr>
 
-          <tr style="background-color: #CBCEFB">
-            <td rowspan="2" >150601</td>
-            <td rowspan="2">ADMINISTRAÇÃO</td>
-            <td rowspan="2">ATIVO</td>
-            <td>Solicitante</td>
-            <td></td>
-            <td>Planilha para</td>
-            <td></td>
-            <td>MO</td>
-            <td></td>
-            <td rowspan="2">x</td>
-            <td rowspan="2">x</td>
-          </tr>
-
-          <tr style="background-color: #CBCEFB">
-            <td>E-mail</td>
-            <td></td>
-            <td>Início</td>
-            <td></td>
-            <td>Fim</td>
-            <td></td>
-          </tr>
+          <?php endforeach; ?>
 
         </table>
   		</div>

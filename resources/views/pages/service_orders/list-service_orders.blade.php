@@ -12,7 +12,7 @@
 		</tr>
 		<?php foreach ($serviceOrders as $key => $value): ?>
 			<tr>
-				<td>{!! $value->os !!}</td>
+				<td>{!! $value->so !!}</td>
 				<td>{!! $value->year !!}</td>
 				<td>{!! $value->month !!}</td>
 				<td><a href="{!! url('edit-service_order/' . $value->id) !!}" role="button"><span class="glyphicon glyphicon-edit"></span></a></td>
