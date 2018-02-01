@@ -10,7 +10,7 @@ class Service extends Model
     protected $table = 'services';
 
     public function so() {
-    	return $this->belongsTo('App\ServiceOrder');
+    	return $this->belongsTo('App\ServiceOrder', 'service_order_id');
     }
 
     public function codService() {

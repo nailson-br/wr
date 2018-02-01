@@ -26,7 +26,7 @@
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-2 control-label" for="description">Identificação</label>
+            <label class="col-md-2 control-label" for="description">Descrição</label>
             <div class="col-md-5">
             <input id="description" name="description" type="text" placeholder="Descrição do serviço" class="form-control input-md" required="" data-error="deu merda" value="{!! $service->description !!}">
             </div>

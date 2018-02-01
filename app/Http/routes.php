@@ -41,8 +41,8 @@ Route::get('delete-cod_service/{id}', 'CodServiceController@destroy');
 Route::get('create-service', function() {
 	return view('pages.services.service');
 });
-// Route::get('list-services', 'ServiceController@index');
-Route::get('list-services', 'ServiceController@listServices');
+Route::get('list-services', 'ServiceController@index');
+// Route::get('list-services', 'ServiceController@listServices');
 Route::post('create-service', 'ServiceController@create');
 Route::get('edit-service/{id}', 'ServiceController@edit');
 Route::post('edit-service/{id}', 'ServiceController@update');

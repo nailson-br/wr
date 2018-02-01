@@ -1,5 +1,29 @@
 @extends('main')
 @section('content')
+
+
+<style type="text/css">
+  .TFtable{
+    width:100%; 
+    border-collapse:collapse; 
+  }
+  .TFtable td{ 
+    padding:7px; border:#4e95f4 1px solid;
+  }
+  /* provide some minimal visual accomodation for IE8 and below */
+  .TFtable tr{
+    background: #b8d1f3;
+  }
+  /*  Define the background color for all the ODD background rows  */
+  .TFtable tr:nth-child(odd){ 
+    background: #b8d1f3;
+  }
+  /*  Define the background color for all the EVEN background rows  */
+  .TFtable tr:nth-child(even){
+    background: #dae5f4;
+  }
+</style>
+
 <body>
   <div class="container-fluid">
   	<div class="row">
@@ -40,7 +64,13 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="codService">Cód. Serviço</label>
             <div class="col-md-5">
-            <input id="codService" name="codService" type="text" placeholder="código do serviço" class="form-control input-md">
+            {{-- <input id="codService" name="codService" type="text" placeholder="código do serviço" class="form-control input-md"> --}}
+            <select id="codService" name="codService" class="form-control">
+              <option value=null>-- selecione --</option>
+            @foreach ($codServices as $codService)
+              <option value="{!! $codService->id !!}">{!! $codService->cod . " - " . $codService->description !!}</option>
+            @endforeach
+            </select>
             </div>
 
             <label class="col-md-1 control-label" for="status">Status</label>
@@ -106,7 +136,7 @@
         <hr>
 
         <!-- Tabela com as OSs abertas -->
-        <table width="100%" border="1px">
+        <table width="100%" border="1px" class="TFtable">
           <tr>
             <th style="text-align: center;">COD</th>
             <th style="text-align: center;">SERVIÇO</th>
@@ -117,26 +147,26 @@
 
           <?php foreach ($services as $key => $value): ?>
 
-          <tr style="background-color: #FFFFFF">
-            <td rowspan="2" style="text-align: center;">{{!! $value->cod_service_id !!}}</td>
-            <td rowspan="2">{{!! $value->cod_service_id !!}}</td>
-            <td rowspan="2" style="text-align: center;">{{!! $value->active !!}}</td>
+          <tr>
+            <td rowspan="2" style="text-align: center;">{!! $value->cod_service !!}</td>
+            <td rowspan="2">{!! $value->description !!}</td>
+            <td rowspan="2" style="text-align: center;">{!! $value->active !!}</td>
             <td>Solicitante</td>
-            <td>{{!! $value->requirer !!}}</td>
+            <td>{!! $value->requirer !!}</td>
             <td>Planilha para</td>
-            <td>{{!! $value->spreadsheet_to !!}}</td>
+            <td>{!! $value->spreadsheet_to !!}</td>
             <td>MO</td>
-            <td>{{!! $value->mo !!}}</td>
+            <td>{!! $value->mo !!}</td>
             <td rowspan="2" style="text-align: center;">x</td>
             <td rowspan="2" style="text-align: center;">x</td>
           </tr>
-          <tr style="background-color: #FFFFFF">
+          <tr>
             <td>E-mail</td>
-            <td>{{!! $value->email !!}}</td>
+            <td>{!! $value->email !!}</td>
             <td>Início</td>
-            <td>{{!! $value->start !!}}</td>
+            <td>{!! $value->start !!}</td>
             <td>Fim</td>
-            <td>{{!! $value->end !!}}</td>
+            <td>{!! $value->end !!}</td>
           </tr>
 
           <?php endforeach; ?>

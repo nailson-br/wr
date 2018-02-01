@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Input;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\ServiceOrder;
+use App\CodService;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
@@ -20,8 +22,16 @@ class ServiceOrderController extends Controller
      */
     public function index()
     {
-        //
-        $serviceOrders = ServiceOrder::All();
+        // $serviceOrders = ServiceOrder::All();
+        /*
+         * Devido a um bug no Laravel, ordenação por múltiplas colunas não
+         * será feita usando o método All() padrão.
+         * 
+         */
+        $serviceOrders = DB::table('service_orders')->select('*')
+            ->orderBy('year', 'ASC')
+            ->orderBy('month', 'ASC')
+            ->get();
         return view('pages.service_orders.list-service_orders')->with('serviceOrders', $serviceOrders);
     }
 
@@ -39,16 +49,8 @@ class ServiceOrderController extends Controller
         $serviceOrder->year = Input::get('year');
 
         $serviceOrder->save();
-        $services = $serviceOrder->services;
-        // $services = $serviceOrder->services;
-        // dd($services);
+        $services = DB::table('services')->join('cod_services', function ($join) use($serviceOrder) { $join->on('services.cod_service_id', '=', 'cod_services.id')->where('services.service_order_id', '=', $serviceOrder->id);})->select('cod_services.cod as cod_service','cod_services.description as description','services.*')->get();
 
-        // return redirect('list-service_orders')->with('services', $services);
-        // return redirect('add-service')->with('services', $services);
-        // return Redirect::action('App\Http\Controllers\ServiceController@listServices', [$serviceOrder]);
-        // return response()->redirectToAction('ServiceController@listServices', [$serviceOrder]);
-        // return Redirect::route('list-services')->with('serviceOrder', $serviceOrder);
-        // return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services',$services);
         return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services', $services);
         // return view('pages.testes.testes')->with('serviceOrder', $serviceOrder)->with('services', $services);
     }
@@ -83,7 +85,10 @@ class ServiceOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $codServices = CodService::All();
+        $serviceOrder = ServiceOrder::find($id);
+        $services = DB::table('services')->join('cod_services', function ($join) use($serviceOrder) { $join->on('services.cod_service_id', '=', 'cod_services.id')->where('services.service_order_id', '=', $serviceOrder->id);})->select('cod_services.cod as cod_service','cod_services.description as description','services.*')->get();
+        return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services', $services)->with('codServices', $codServices);
     }
 
     /**
