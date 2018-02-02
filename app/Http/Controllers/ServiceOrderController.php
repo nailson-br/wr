@@ -52,7 +52,6 @@ class ServiceOrderController extends Controller
         $services = DB::table('services')->join('cod_services', function ($join) use($serviceOrder) { $join->on('services.cod_service_id', '=', 'cod_services.id')->where('services.service_order_id', '=', $serviceOrder->id);})->select('cod_services.cod as cod_service','cod_services.description as description','services.*')->get();
 
         return view('pages.services.add-service')->with('serviceOrder', $serviceOrder)->with('services', $services);
-        // return view('pages.testes.testes')->with('serviceOrder', $serviceOrder)->with('services', $services);
     }
 
     /**

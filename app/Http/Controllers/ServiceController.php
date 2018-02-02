@@ -45,12 +45,10 @@ class ServiceController extends Controller
 
         $service->save();
 
-        // return redirect('list-services/' . $service->so()->id());
-        $serviceOrder = $service->so();
+        $serviceOrder = $service->so;
         $id = $serviceOrder->id;
-        // return redirect()->route('list-services', ['serviceOrder' => $serviceOrder]);
-        // return redirect()->route('list-services', [$serviceOrder]);
-        return redirect()->action('ServiceController@listServices', [$id]);
+
+        return redirect()->to('edit-service_order/' . $id);
     }
 
     /**

@@ -136,7 +136,7 @@
         <hr>
 
         <!-- Tabela com as OSs abertas -->
-        <table width="100%" border="1px" class="TFtable">
+        <table width="100%" border="1px" class="table">
           <tr>
             <th style="text-align: center;">COD</th>
             <th style="text-align: center;">SERVIÇO</th>
@@ -145,9 +145,16 @@
             <th colspan="2" style="text-align: center;">Planilha</th>
           </tr>
 
-          <?php foreach ($services as $key => $value): ?>
+          <?php $bg = 'lightblue'; ?>
 
-          <tr>
+          <?php foreach ($services as $key => $value): ?>
+          <?php if ($bg == 'lightblue') {
+            $bg = 'white';}
+            else {
+              $bg = 'lightblue';
+            } ?>
+
+          <tr bgcolor="{!! $bg !!}">
             <td rowspan="2" style="text-align: center;">{!! $value->cod_service !!}</td>
             <td rowspan="2">{!! $value->description !!}</td>
             <td rowspan="2" style="text-align: center;">{!! $value->active !!}</td>
@@ -160,7 +167,7 @@
             <td rowspan="2" style="text-align: center;">x</td>
             <td rowspan="2" style="text-align: center;">x</td>
           </tr>
-          <tr>
+          <tr bgcolor="{!! $bg !!}">
             <td>E-mail</td>
             <td>{!! $value->email !!}</td>
             <td>Início</td>
