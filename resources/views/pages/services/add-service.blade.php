@@ -135,50 +135,56 @@
 
         <hr>
 
-        <!-- Tabela com as OSs abertas -->
-        <table width="100%" border="1px" class="table">
-          <tr>
-            <th style="text-align: center;">COD</th>
-            <th style="text-align: center;">SERVIÇO</th>
-            <th style="text-align: center;">STATUS</th>
-            <th colspan="6" style="text-align: center;">Detalhes</th>
-            <th colspan="2" style="text-align: center;">Planilha</th>
-          </tr>
+        @if( ! empty($services) )
+          <!-- Tabela com as OSs abertas -->
+          <table class="table table-bordered table-condensed">
+            <thead class="thead-dark">
+              <tr>
+                <th>COD</th>
+                <th>SERVIÇO</th>
+                <th>STATUS</th>
+                <th colspan="6">Detalhes</th>
+                <th colspan="4">Planilha</th>
+              </tr>
+            </thead>
 
-          <?php $bg = 'lightblue'; ?>
+            <?php $bg = 'lightblue'; ?>
 
-          <?php foreach ($services as $key => $value): ?>
-          <?php if ($bg == 'lightblue') {
-            $bg = 'white';}
-            else {
-              $bg = 'lightblue';
-            } ?>
+            <?php foreach ($services as $key => $value): ?>
+            <?php if ($bg == 'lightblue') {
+              $bg = 'white';}
+              else {
+                $bg = 'lightblue';
+              } ?>
 
-          <tr bgcolor="{!! $bg !!}">
-            <td rowspan="2" style="text-align: center;">{!! $value->cod_service !!}</td>
-            <td rowspan="2">{!! $value->description !!}</td>
-            <td rowspan="2" style="text-align: center;">{!! $value->active !!}</td>
-            <td>Solicitante</td>
-            <td>{!! $value->requirer !!}</td>
-            <td>Planilha para</td>
-            <td>{!! $value->spreadsheet_to !!}</td>
-            <td>MO</td>
-            <td>{!! $value->mo !!}</td>
-            <td rowspan="2" style="text-align: center;">x</td>
-            <td rowspan="2" style="text-align: center;">x</td>
-          </tr>
-          <tr bgcolor="{!! $bg !!}">
-            <td>E-mail</td>
-            <td>{!! $value->email !!}</td>
-            <td>Início</td>
-            <td>{!! $value->start !!}</td>
-            <td>Fim</td>
-            <td>{!! $value->end !!}</td>
-          </tr>
+            <tr bgcolor="{!! $bg !!}">
+              <td rowspan="2" style="vertical-align: middle !important">{!! $value->cod_service !!}</td>
+              <td rowspan="2" style="vertical-align: middle !important">{!! $value->description !!}</td>
+              <td rowspan="2" style="vertical-align: middle !important">{!! $value->active !!}</td>
+              <td>Solicitante</td>
+              <td>{!! $value->requirer !!}</td>
+              <td>Planilha para</td>
+              <td>{!! $value->spreadsheet_to !!}</td>
+              <td>MO</td>
+              <td>{!! $value->mo !!}</td>
+              <td rowspan="2" style="vertical-align: middle !important">x</td>
+              <td rowspan="2" style="vertical-align: middle !important">x</td>
+              <td rowspan="2" style="vertical-align: middle !important"><a href="{!! url('edit-service/' . $value->id) !!}" role="button"><span class="glyphicon glyphicon-edit"></span></a></td>
+              <td rowspan="2" style="vertical-align: middle !important"><a href="{!! url('delete-service/' . $value->id) !!}" role="button"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+            <tr bgcolor="{!! $bg !!}">
+              <td>E-mail</td>
+              <td>{!! $value->email !!}</td>
+              <td>Início</td>
+              <td>{!! $value->start !!}</td>
+              <td>Fim</td>
+              <td>{!! $value->end !!}</td>
+            </tr>
 
-          <?php endforeach; ?>
+            <?php endforeach; ?>
 
-        </table>
+          </table>
+        @endif
   		</div>
   	</div>
   </div>

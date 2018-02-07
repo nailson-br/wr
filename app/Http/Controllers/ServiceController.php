@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Service;
 use App\ServiceOrder;
+use App\CodService;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -82,7 +83,9 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('pages.services.edit-service')->with('service', $service);
+        $serviceOrder = $service->so;
+        $codServices = CodService::All();
+        return view('pages.services.edit-service')->with('service', $service)->with('serviceOrder', $serviceOrder)->with('codServices', $codServices);
     }
 
     /**
@@ -94,14 +97,14 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$service = Service::find($id);
+        $service = Service::find($id);
 
-        if ($service->service_order_id != Input::get('service_order_id')) {
-            $service->service_order_id = Input::get('service_order_id');
+        if ($service->cod_service_id != Input::get('codService')) {
+            $service->cod_service_id = Input::get('codService');
         }
 
-        if ($service->active != Input::get('active')) {
-            $service->active = Input::get('active');
+        if ($service->active != Input::get('status')) {
+            $service->active = Input::get('status');
         }
 
         if ($service->requirer != Input::get('requirer')) {
@@ -131,7 +134,9 @@ class ServiceController extends Controller
 
         $service->save();
 
-        return redirect('list-services');*/
+        // return redirect('list-services');
+        // retorna usando o id da OS que está num campo hidden da página
+        return redirect()->to('edit-service_order/' . Input::get('serviceOrderId'));
     }
 
     /**
@@ -143,9 +148,11 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::find($id);
+        $serviceOrder = $service->so;
         $service->delete();
 
-        return redirect('list-services');
+        // return redirect('list-services');
+        return redirect()->to('edit-service_order/' . $serviceOrder->id);
     }
 
     /** Funções customizadas.
