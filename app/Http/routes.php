@@ -103,3 +103,8 @@ Route::get('create-service_order', function() {
 
 //     return view('pages.workforce.workforce');
 // });
+
+// Rotas para Alocação de Mão de Obra
+Route::get('workforce-allocate', function() {
+	return view('pages.allocations.workforce-allocation');
+});
