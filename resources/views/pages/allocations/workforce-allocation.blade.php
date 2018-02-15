@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-10">
                     <legend>Alocação de mão de obra</legend>
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 25px">
                         <label for="os" class="col-md-1 control-label">OS</label>
                         <div class="col-md-3">
                             <select id="os" name="os" class="form-control">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <legend>Período de alocação</legend>
+                            <legend class="bg-success" style="padding-left: 4px">Período de alocação</legend>
                             <div class="row">
                                 <label class="col-md-2 control-label" for="start">Início</label>
                                 <div class="col-md-4">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <legend>Incluir</legend>
+                            <legend class="bg-success" style="padding-left: 4px">Incluir</legend>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="checkbox">
