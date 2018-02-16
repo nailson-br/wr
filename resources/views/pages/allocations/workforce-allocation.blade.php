@@ -56,6 +56,13 @@
                                     <input id="end" name="end" type="text" placeholder="Fim" class="form-control input-md" required="">
                                 </div>
                             </div>
+                            <div class="row" style="padding-top: 20px">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <button id="submit" name="submit" class="btn btn-primary" type="submit">Salvar</button>
+                                    <button id="cancel" name="cancel" class="btn btn-danger" type="button" onclick="window.location='{{ URL::previous() }}'">Cancelar</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <legend class="bg-success" style="padding-left: 4px">Incluir</legend>
@@ -80,7 +87,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-1">
                         </div>
                         <div class="col-md-8">
                         </div>

@@ -28,6 +28,8 @@
             <li><a href="{{ url('create-service_order')}}">Cadastro de Ordens de Serviço</a></li>
             <li><a href="{{ url('list-service_orders')}}">Listagem de Ordens Serviço</a></li>
             <li role="separator" class="divider"></li>
+            <li><a href="{{ url('workforce-allocate')}}">Alocação de serviços</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{{ url('create-holiday')}}">Cadstro de Feriados</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Another action</a></li>
