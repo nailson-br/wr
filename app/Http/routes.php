@@ -109,3 +109,4 @@ Route::get('create-service_order', function() {
 // 	return view('pages.allocations.workforce-allocation');
 // });
 Route::get('workforce-allocate/{id?}', 'AllocationController@index');
+Route::post('workforce-allocate', 'AllocationController@create');

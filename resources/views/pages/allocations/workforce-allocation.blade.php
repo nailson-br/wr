@@ -2,7 +2,7 @@
 @section('content')
 
 <body>
-    <form class="form-horizontal" action="{{ url('create-workforce')}}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ url('workforce-allocate')}}" method="post" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div class="container-fluid">
             <div class="row">
@@ -16,30 +16,27 @@
                         <div class="col-md-3">
                             <select id="os" name="os" class="form-control">
                                 <option value="">-- selecione --</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
+                                @foreach ($serviceOrders as $so)
+                                    <option value="{{ $so->so }}">{{ $so->so }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <label class="col-md-1 control-label" for="name">Nome</label>
                         <div class="col-md-3">
                             <select id="name" name="name" class="form-control">
                                 <option value="">-- selecione --</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
+                                    @foreach ($workforces as $workforce)
+                                        <option value="{{ $workforce->name }}">{{ $workforce->name }}</option>
+                                    @endforeach
                             </select>
                         </div>
                         <label class="col-md-1 control-label" for="service">Serviço</label>
                         <div class="col-md-3">
                             <select id="service" name="service" class="form-control">
                                 <option value="">-- selecione --</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
+                                    @foreach ($codServices as $codService)
+                                        <option value="{{ $codService->cod . ' - ' . $codService->description}}">{{ $codService->cod . ' - ' . $codService->description}}</option>
+                                    @endforeach
                             </select>
                         </div>
                     </div>
@@ -47,13 +44,23 @@
                         <div class="col-md-8">
                             <legend class="bg-success" style="padding-left: 4px">Período de alocação</legend>
                             <div class="row">
-                                <label class="col-md-2 control-label" for="start">Início</label>
+                                <label class="col-md-2 control-label" for="start_date">início</label>
                                 <div class="col-md-4">
-                                    <input id="start" name="start" type="text" placeholder="Início" class="form-control input-md" required="">
+                                    <input id="start_date" name="start_date" type="date" placeholder="Início" class="form-control input-md" >
                                 </div>
-                                <label class="col-md-2 control-label" for="end">Fim</label>
+                                <label class="col-md-2 control-label" for="end_date">término</label>
                                 <div class="col-md-4">
-                                    <input id="end" name="end" type="text" placeholder="Fim" class="form-control input-md" required="">
+                                    <input id="end_date" name="end_date" type="date" placeholder="Fim" class="form-control input-md" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-2 control-label" for="start_time">início</label>
+                                <div class="col-md-4">
+                                    <input id="start_time" name="start_time" type="time" placeholder="Início" class="form-control input-md" >
+                                </div>
+                                <label class="col-md-2 control-label" for="end_time">término</label>
+                                <div class="col-md-4">
+                                    <input id="end_time" name="end_time" type="time" placeholder="Fim" class="form-control input-md" >
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 20px">
@@ -69,27 +76,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="">sábados</label>
+                                        <label><input type="checkbox" name="saturdays" id="saturdays">sábados</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="">domingos</label>
+                                        <label><input type="checkbox" name="sundays" id="sundays">domingos</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="">feriados</label>
+                                        <label><input type="checkbox" name="holydays" id="holidays">feriados</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" value="">dias ponte</label>
+                                        <label><input type="checkbox" name="bridges" id="bridges">dias ponte</label>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-8">
                         </div>
                     </div>
                 </div>
