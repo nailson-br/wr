@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="holydays" id="holidays">feriados</label>
+                                        <label><input type="checkbox" name="holidays" id="holidays">feriados</label>
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" name="bridges" id="bridges">dias ponte</label>

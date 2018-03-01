@@ -60,70 +60,57 @@ class AllocationController extends Controller
         $daysAllocated = 0;
         $dayType = "";
 
-        echo 'sábados: '    . Input::get('saturdays') . '<br>';
+        /*echo 'sábados: '    . Input::get('saturdays') . '<br>';
         echo 'domingos: '   . Input::get('sundays')   . '<br>';
         echo 'feriados: '   . Input::get('holidays')  . '<br>';
-        echo 'dias ponte: ' . Input::get('bridges')   . '<br>';
+        echo 'dias ponte: ' . Input::get('bridges')   . '<br>';*/
 
+        // echo $daysAllocated . ' dias alocados <br>';
         while (strtotime($startDate) <= strtotime($endDate)) {
-            echo date('D', strtotime($startDate)) . '<br>';
+            // echo date('D', strtotime($startDate)) . '<br>';
 
             switch (true) {
-                case ((array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) !== FALSE) && (Input::get('holidays') == 'on')):
-                    echo 'feriado válido' . '<br>';
+                 
+                // Dia de semana E não feriado E não ponte
+                case ((date('N', strtotime($startDate)) < 6) 
+                    && (array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) === FALSE) 
+                    && (array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) === FALSE)):
+                        // echo 'dia de semana, não feriado e não ponte <br>';
+                        $daysAllocated++;
+                        break;
+
+                // Sábado com opção selecionada
+                case ((date('D', strtotime($startDate)) === 'Sat') && (Input::get('saturdays'))):
+                    // echo 'sabado válido' . '<br>';
                     $daysAllocated++;
                     break;
-                case ((array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) !== FALSE) && (Input::get('bridges') == 'on')):
-                    echo 'ponte válido' . '<br>';
+
+                // Domingo com opção selecionada
+                case ((date('D', strtotime($startDate)) == "Sun") && (Input::get('sundays'))):
+                    // echo 'domingo válido' . '<br>';
                     $daysAllocated++;
                     break;
-                case ((date('D', strtotime($startDate)) == "Sun") && (Input::get('sundays') == 'on')):
-                    echo 'domingo válido' . '<br>';
-                    $daysAllocated++;
-                    break;
-                case ((date('D', strtotime($startDate)) === 'Sat') && (Input::get('saturdays') === TRUE)):
-                    echo 'sabado válido' . '<br>';
-                    $daysAllocated++;
-                    break;
-                default:
-                    echo 'dia normal' . '<br>';
-                    $daysAllocated++;
-                    break;
+
+                // feriado DURANTE A SEMANA com a opção selecionada
+                case ((array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) !== FALSE)
+                    && (date('N', strtotime($startDate)) < 6)
+                    && (Input::get('holidays'))):
+                        // echo 'feriado válido' . '<br>';
+                        $daysAllocated++;
+                        break;
+
+                // // dia-ponte DURANTE A SEMANA com a opção selecionada
+                case ((array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) !== FALSE)
+                    && (date('N', strtotime($startDate)) < 6)
+                    && (Input::get('bridges'))):
+                        // echo 'ponte válido' . '<br>';
+                        $daysAllocated++;
+                        break;
+
             }
-
-            // if ((array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) !== FALSE) && (Input::get('holidays') == 'on')) {
-            //     // $dayType = "feriado";
-            //     $daysAllocated++;
-            // } elseif ((array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) !== FALSE) && (Input::get('bridges') == 'on')) {
-            //     // $dayType = "ponte";
-            //     $daysAllocated++;
-            // } elseif ((date('D', strtotime($startDate)) == "Sun") && (Input::get('sundays') == 'on')) {
-            //     // $dayType = "domingo";
-            //     $daysAllocated++;
-            // } elseif ((date('D', strtotime($startDate)) == "Sat") && (Input::get('saturdays') === '1')) {
-            //     // $dayType = "sábado";
-            //     $daysAllocated++;
-            // } else {
-            //     $daysAllocated++;
-            // }
-
-            // if ($dayType != "feriado" && $dayType != "bridge") {
-            //     $daysAllocated++;
-            // }
 
             $startDate = date ("d-m-Y", strtotime("+1 day", strtotime($startDate)));
         }
-
-        // while (strtotime($startDate) <= strtotime($endDate)) {
-        //     echo date('d-m-Y', strtotime($startDate));
-        //     if (array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) !== FALSE) {
-        //         echo " = feriado";
-        //     } elseif (array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) !== FALSE) {
-        //         echo " = ponte";
-        //     }
-        //     echo "<br>";
-        //     $startDate = date ("d-m-Y", strtotime("+1 day", strtotime($startDate)));
-        // }
 
         echo $daysAllocated . ' dias alocados';
     }
