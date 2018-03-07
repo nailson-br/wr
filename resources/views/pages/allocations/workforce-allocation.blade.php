@@ -12,31 +12,42 @@
                 <div class="col-md-10">
                     <legend>Alocação de mão de obra</legend>
                     <div class="row" style="margin-bottom: 25px">
-                        <label for="os" class="col-md-1 control-label">OS</label>
-                        <div class="col-md-3">
-                            <select id="os" name="os" class="form-control">
+                        <label for="service_order_id" class="col-md-1 control-label">service_order_id</label>
+                        <div class="col-md-2">
+                            <select id="service_order_id" name="service_order_id" class="form-control">
                                 <option value="">-- selecione --</option>
                                 @foreach ($serviceOrders as $so)
-                                    <option value="{{ $so->so }}">{{ $so->so }}</option>
+                                    <option value="{{ $so->id }}">{{ $so->so }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <label class="col-md-1 control-label" for="name">Nome</label>
-                        <div class="col-md-3">
-                            <select id="name" name="name" class="form-control">
+                        <label class="col-md-1 control-label" for="workforce_id">Nome</label>
+                        <div class="col-md-2">
+                            <select id="workforce_id" name="workforce_id" class="form-control">
                                 <option value="">-- selecione --</option>
                                     @foreach ($workforces as $workforce)
-                                        <option value="{{ $workforce->name }}">{{ $workforce->name }}</option>
+                                        <option value="{{ $workforce->id }}">{{ $workforce->name }}</option>
                                     @endforeach
                             </select>
                         </div>
-                        <label class="col-md-1 control-label" for="service">Serviço</label>
-                        <div class="col-md-3">
-                            <select id="service" name="service" class="form-control">
+                        <label class="col-md-1 control-label" for="service_id">Serviço</label>
+                        <div class="col-md-2">
+                            <select id="service_id" name="service_id" class="form-control">
                                 <option value="">-- selecione --</option>
                                     @foreach ($codServices as $codService)
-                                        <option value="{{ $codService->cod . ' - ' . $codService->description}}">{{ $codService->cod . ' - ' . $codService->description}}</option>
+                                        <option value="{{ $codService->id }}">{{ $codService->cod . ' - ' . $codService->description}}</option>
                                     @endforeach
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label" for="function">Função</label>
+                        <div class="col-md-2">
+                            <select id="function" name="function" class="form-control">
+                                {{-- <option value="">-- selecione --</option> --}}
+                                <option value="A">A</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="T">T</option>
                             </select>
                         </div>
                     </div>
@@ -100,3 +111,4 @@
 </body>
 
 @endsection
+

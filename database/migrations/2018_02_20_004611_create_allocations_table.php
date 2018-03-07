@@ -14,11 +14,11 @@ class CreateAllocationsTable extends Migration
     {
         Schema::create('allocations', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('service_order_id');
             $table->integer('workforce_id');
             $table->integer('service_id');
             $table->text('function');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();

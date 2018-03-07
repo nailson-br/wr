@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Allocation;
 use App\CodService;
+use DateTime;
 use App\Holiday;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\ServiceOrder;
 use App\Workforce;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -57,17 +60,22 @@ class AllocationController extends Controller
         // echo 'Uma semana pra frente: ' . date('d-m-Y', strtotime('+1 week', strtotime($startDate))) . "<br>";
         // echo 'Um mês pra frente: ' . date('d-m-Y', strtotime('+1 month', strtotime($startDate))) . "<br>";
 
-        $daysAllocated = 0;
-        $dayType = "";
-
         /*echo 'sábados: '    . Input::get('saturdays') . '<br>';
         echo 'domingos: '   . Input::get('sundays')   . '<br>';
         echo 'feriados: '   . Input::get('holidays')  . '<br>';
         echo 'dias ponte: ' . Input::get('bridges')   . '<br>';*/
 
-        // echo $daysAllocated . ' dias alocados <br>';
         while (strtotime($startDate) <= strtotime($endDate)) {
-            // echo date('D', strtotime($startDate)) . '<br>';
+
+                $allocation = new Allocation();
+                $allocation->service_order_id = Input::get('service_order_id');
+                $allocation->workforce_id = Input::get('workforce_id');
+                $allocation->service_id = Input::get('service_id');
+                $allocation->function = Input::get('function');
+                // Carbon::createFromFormat('d/m/Y', Input::get('holiday'));
+                $allocation->date = Carbon::createFromFormat('Y-m-d', $startDate);
+                $allocation->start_time = Input::get('start_time');
+                $allocation->end_time = Input::get('end_time');
 
             switch (true) {
                  
@@ -76,19 +84,20 @@ class AllocationController extends Controller
                     && (array_search(date('Y-m-d', strtotime($startDate)), $holidays->toArray()) === FALSE) 
                     && (array_search(date('Y-m-d', strtotime($startDate)), $bridges->toArray()) === FALSE)):
                         // echo 'dia de semana, não feriado e não ponte <br>';
-                        $daysAllocated++;
+                        
+                        $allocation->save();
                         break;
 
                 // Sábado com opção selecionada
                 case ((date('D', strtotime($startDate)) === 'Sat') && (Input::get('saturdays'))):
                     // echo 'sabado válido' . '<br>';
-                    $daysAllocated++;
+                    $allocation->save();
                     break;
 
                 // Domingo com opção selecionada
                 case ((date('D', strtotime($startDate)) == "Sun") && (Input::get('sundays'))):
                     // echo 'domingo válido' . '<br>';
-                    $daysAllocated++;
+                    $allocation->save();
                     break;
 
                 // feriado DURANTE A SEMANA com a opção selecionada
@@ -96,7 +105,7 @@ class AllocationController extends Controller
                     && (date('N', strtotime($startDate)) < 6)
                     && (Input::get('holidays'))):
                         // echo 'feriado válido' . '<br>';
-                        $daysAllocated++;
+                        $allocation->save();
                         break;
 
                 // // dia-ponte DURANTE A SEMANA com a opção selecionada
@@ -104,15 +113,16 @@ class AllocationController extends Controller
                     && (date('N', strtotime($startDate)) < 6)
                     && (Input::get('bridges'))):
                         // echo 'ponte válido' . '<br>';
-                        $daysAllocated++;
+                        $allocation->save();
                         break;
 
             }
 
-            $startDate = date ("d-m-Y", strtotime("+1 day", strtotime($startDate)));
+            $startDate = date ("Y-m-d", strtotime("+1 day", strtotime($startDate)));
         }
 
-        echo $daysAllocated . ' dias alocados';
+        // echo $daysAllocated . ' dias alocados';
+        echo 'Finalizado';
     }
 
     /**
