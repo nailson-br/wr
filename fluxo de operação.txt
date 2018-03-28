@@ -1,0 +1,53 @@
+CADASTRO DE NOVO CÓDIGO DE SERVIÇO
+	Códigos de serviço servem para serem associados à OS de forma a agrupar
+	as alocações e realizar as cobranças.
+
+	- Criar um novo código de serviço
+	- Tela "Cadastro de Códigos de Serviço"
+	- URL: /create-cod_service
+	EXEMPLOS DE CÓDIGOS DE SERVIÇO
+
+		Código	Descrição		
+		150601	ADMINISTRAÇÃO		
+		150602	OFICINA WR		
+		160312	FB - FIXO GRACIANO		
+		160617	FB - SOLICITAÇÃO HENRIQUE
+
+	- Listar/editar/excluir Códigos de Serviços cadastrados
+	  Acessar pela link "Listagem de Códigos de Serviço"
+	  URL: /list-cod_services
+
+==============================================================================
+CADASTRO DE NOVA ORDEM DE SERVIÇO (OS)
+	A primeira etapa para criação das Ordens de Serviço dos meses é criar a OS
+	que vai ter o código baseado no ano e mês selecionados.
+	Após a criação, será redirecionado para uma tela na qual serão associaods os
+	SERVIÇOS à essa OS recém-criada.
+
+==============================================================================
+CADASTRO DE NOVO SERVIÇO
+	Um serviço tem detalhes do solicitante, para quem será enviada a planilha e
+	detalhes de e-mail, data de início e término.
+	É cadastrado após a criação de uma nova OS ou da seleção de uma OS para
+	edição.
+	A tela já exibe OS selecionada e o formulário para cadastro do Novo Serviço
+	que será associado à OS.
+
+
+
+
+==============================================================================
+DÚVIDAS
+	- - O CÓDIGO DE SERVIÇO está bem nítido que está usando um formato
+	    YYMMDD (ano, mês e dia).
+	    Isso está correto?
+	    Porque numa primeira impressão, o código não estaria vinculado a uma
+	    data, porque fica disponível para qualquer OS, independente de quando
+	    ela foi aberta.
+
+	- - Ao lançar um CÓDIGO DE SERVIÇO numa OS, as datas de início e fim são
+	    cadastradas ou obedecem ao primeiro item do SERVIÇO para a OS como a
+	    data de início, e o último item da OS como a data final?
+	    Ex: Seleciono todos os itens sob o CÓDIGO DE SERVIÇO 150601 - ADMINISTRAÇÃO
+	    da OS 062016, pego a data mais antiga e considero como INÍCIO e a data
+	    mais recente e considero como FIM.

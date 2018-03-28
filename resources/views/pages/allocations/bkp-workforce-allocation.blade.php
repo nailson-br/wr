@@ -1,6 +1,7 @@
 @extends('main')
 @section('content')
 
+<body>
     <form class="form-horizontal" action="{{ url('workforce-allocate')}}" method="post" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div class="container-fluid">
@@ -29,11 +30,13 @@
                                     @endforeach
                             </select>
                         </div>
-                        <label class="col-md-1 control-label" for="service_id">Serviço</label>
+                        <label class="col-md-1 control-label" for="cod_service_id">Serviço</label>
                         <div class="col-md-2">
-                            <select id="service_id" name="service_id" class="form-control">
+                            <select id="cod_service_id" name="cod_service_id" class="form-control">
                                 <option value="">-- selecione --</option>
-
+                                    @foreach ($codServices as $codService)
+                                        <option value="{{ $codService->id }}">{{ $codService->cod . ' - ' . $codService->description}}</option>
+                                    @endforeach
                             </select>
                         </div>
                         <label class="col-md-1 control-label" for="function">Função</label>
@@ -105,21 +108,7 @@
             </div>
         </div>
     </form>
+</body>
 
 @endsection
 
-@section('post-script')
-    <script type="text/javascript">
-        $('select[name=service_order_id]').change(function () {
-            var serviceOrderId = $(this).val();
-
-            $.get('/get-services/' + serviceOrderId, function (descriptions) {
-                $('select[name=service_id]').empty();
-                $('select[name=service_id]').append('<option>-- selecione --</option>');
-                $.each(descriptions, function (key, value) {
-                    $('select[name=service_id]').append('<option value=' + value.id + '>' + value.description + '</option>');
-                });
-            });
-        });
-    </script>
-@endsection

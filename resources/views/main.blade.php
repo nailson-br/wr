@@ -9,4 +9,5 @@
         @yield("detail")
     </div>
 </body>
+@yield("post-script")
 </html>

@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Allocation;
 use App\CodService;
-use DateTime;
 use App\Holiday;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\ServiceOrder;
 use App\Workforce;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
 class AllocationController extends Controller
 {
@@ -179,5 +180,37 @@ class AllocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Obtém todos os serviços relacionados à OS
+     * indicada em $osId para preenchimento do
+     * select na página dinamicamente.
+     * 
+     * @param int $osId
+     * @return \Illuminate\Http\Response
+     */
+    public function getServices($osId)
+    {
+        // $services = DB::select(`service_orders.id as codServiceId`,`cod_services.cod as codService`,`cod_services.description as description`)
+        // ->from(`services`)
+        // ->join(`service_orders`, function($join) {
+        //     $join->on(`services.service_order_id`, `=`, `service_orders.id`);
+        //     })
+        // ->join(`cod_services`, function($join) {
+        //     $join->on(`cod_services.id`, `=`, `services.cod_service_id`);
+        //     })
+        // ->where(`service_orders.id`, `=`, 104)
+        // ->get();
+
+        $serviceOrder = ServiceOrder::find($osId);
+
+        $services = DB::table('services')
+        ->join('cod_services', function($join) use($serviceOrder) { 
+            $join->on('services.cod_service_id', '=', 'cod_services.id');})
+        ->where('services.service_order_id', '=', $serviceOrder->id)
+        ->select('services.id', DB::raw('CONCAT(cod_services.cod, " - ", cod_services.description) as description'))->get();
+
+        return Response::json($services);
     }
 }

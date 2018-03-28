@@ -110,3 +110,9 @@ Route::get('create-service_order', function() {
 // });
 Route::get('workforce-allocate/{id?}', 'AllocationController@index');
 Route::post('workforce-allocate', 'AllocationController@create');
+Route::get('list-allocations', function() {
+	return view('pages.allocations.list-allocations');
+});
+// Rota para preenchimento dinâmico do combo de serviços
+// relacionados à OS selecionada
+Route::get('get-services/{osId}', 'AllocationController@getServices');
