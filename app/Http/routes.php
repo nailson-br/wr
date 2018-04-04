@@ -116,3 +116,8 @@ Route::get('list-allocations', function() {
 // Rota para preenchimento dinâmico do combo de serviços
 // relacionados à OS selecionada
 Route::get('get-services/{osId}', 'AllocationController@getServices');
+
+// Rotas para exibição da grade de alocação
+Route::get('allocation_grid', function() {
+	return view('pages.allocation-grid.allocation-grid');
+});
